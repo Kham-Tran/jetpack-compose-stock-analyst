@@ -73,6 +73,7 @@ dependencies {
     implementation("androidx.room:room-runtime:${roomVersion}")
     implementation("androidx.room:room-ktx:${roomVersion}")
     implementation("androidx.compose.runtime:runtime-livedata:1.6.4")
+    implementation("androidx.compose.ui:ui-text-google-fonts:1.6.7")
     annotationProcessor("androidx.room:room-compiler:${roomVersion}")
     kapt("androidx.room:room-compiler:${roomVersion}")
     implementation("androidx.core:core-ktx:1.9.0")
