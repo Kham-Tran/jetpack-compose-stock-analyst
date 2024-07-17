@@ -19,11 +19,13 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.Search
+import androidx.compose.material3.Button
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.FloatingActionButtonDefaults
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
@@ -49,7 +51,7 @@ fun searchFloatingButton(
     nav: NavController,
     model: ProductModel
 ){
-    FloatingActionButton(onClick = { /*TODO*/ }, containerColor = Color.Transparent, elevation = FloatingActionButtonDefaults.elevation(0.dp) , modifier = Modifier) {
+    FloatingActionButton(onClick = { /*TODO*/ }, containerColor = MaterialTheme.colorScheme.secondaryContainer, elevation = FloatingActionButtonDefaults.elevation(0.dp) , modifier = Modifier) {
         AnimatedContent(targetState = expanded, label = "") { targetState ->
             if(targetState){
                 searchBox(nav = nav, size = size, expanded = expanded, onExpanded = onExpanded, model)
@@ -124,15 +126,24 @@ fun searchBox(
                 }
             })
         }
-        Spacer(modifier = Modifier.fillMaxWidth().height(50.dp).clickable(onClick = {onExpanded(!expanded)}))
-        TextField(
-            value = keyword,
-            onValueChange = {
-                keyword = it.uppercase()
-            },
-            placeholder = { Text(text = "Enter Symbol") },
-            modifier = Modifier
-        )
+        Spacer(modifier = Modifier
+            .fillMaxWidth()
+            .height(50.dp)
+            .clickable(onClick = { onExpanded(!expanded) }))
+        Row(){
+            TextField(
+                value = keyword,
+                onValueChange = {
+                    keyword = it.uppercase()
+                },
+                placeholder = { Text(text = "Enter Symbol") },
+                modifier = Modifier
+            )
+            Button(onClick = { model.addItem(keyword)
+                onExpanded(!expanded)}) {
+                Text(text = "Submit")
+            }
+        }
     }
 
     }

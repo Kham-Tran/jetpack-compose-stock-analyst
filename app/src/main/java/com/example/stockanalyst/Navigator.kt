@@ -12,6 +12,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.example.stockanalyst.Database.TicketDao
+import com.example.stockanalyst.GraphPage.GraphPage
 import com.example.stockanalyst.HomePage.HomePage
 import com.example.stockanalyst.Model.ProductModel
 import com.example.stockanalyst.TicketScreen.TicketPage
@@ -29,6 +30,9 @@ fun Navigator(Nav:NavController, size:Size, dao :TicketDao, context: Context) {
         }
         composable(TicketPage.route){
             TicketPage(Nav,dao,selectedTicket,model)
+        }
+        composable(Graph.route){
+            GraphPage(Nav,model,selectedTicket)
         }
     }
 }

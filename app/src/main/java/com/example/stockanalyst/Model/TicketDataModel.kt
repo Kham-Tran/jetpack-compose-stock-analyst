@@ -29,7 +29,7 @@ data class Result(
 @Serializable
 data class Indicators(
     var quote:List<Quote>,
-    var adjclose:List<Adjclose>
+//    var adjclose:List<Adjclose>
 
 )
 
@@ -43,10 +43,10 @@ data class Quote(
 
 )
 
-@Serializable
-data class Adjclose(
-    var adjclose:List<Double>
-)
+//@Serializable
+//data class Adjclose(
+//    var adjclose:List<Double>
+//)
 
 
 data class stock_info(

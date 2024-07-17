@@ -16,10 +16,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.compose.rememberNavController
+import com.example.compose.AppTheme
 import com.example.stockanalyst.Database.Ticket
 import com.example.stockanalyst.Database.TicketDao
 import com.example.stockanalyst.Database.TicketDatabase
-import com.example.stockanalyst.ui.theme.StockAnalystTheme
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -30,7 +30,7 @@ class MainActivity : ComponentActivity() {
          var TicketDb: TicketDatabase = TicketDatabase.getInstance(this)
          var TicketDAO: TicketDao = TicketDb.ticketDAO()
         setContent {
-            StockAnalystTheme {
+            AppTheme{
                 // A surface container using the 'background' color from the theme
                 var context = LocalContext.current
                 var width = context.resources.displayMetrics.widthPixels
@@ -46,8 +46,10 @@ class MainActivity : ComponentActivity() {
                 }
             }
         }
+    }
 
-
+    override fun onDestroy() {
+        super.onDestroy()
 
     }
 }

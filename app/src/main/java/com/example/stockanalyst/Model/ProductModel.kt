@@ -1,6 +1,7 @@
 package com.example.stockanalyst.Model
 
 import android.content.Context
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.lifecycle.ViewModel
@@ -18,15 +19,14 @@ class ProductModel(dao : TicketDao, context: Context):ViewModel() {
     private lateinit var client: NetworkAPI
     var _TicketStateFlow = MutableStateFlow<List<com.example.stockanalyst.Database.Ticket>>(emptyList())
     var TicketStateFlow:StateFlow<List<Ticket>> = _TicketStateFlow
+    var _miniGraphData = MutableStateFlow(emptyList<box>())
+    var miniGraphData:StateFlow<List<box>> = _miniGraphData
     var stockInfo: List<stock_info> = context.assets.open("data/stock_info.csv").bufferedReader().use {
         it.readLines().map { item ->
             var data = item.split(",")
 
             stock_info(data[0],data[1],data[2]) }
     }
-
-
-
 
     init {
         Dao = dao
@@ -58,7 +58,14 @@ class ProductModel(dao : TicketDao, context: Context):ViewModel() {
 
     }
 
-    suspend fun getGraphData(name:String, range:String, interval:String): box {
-        return client.getDatainRangeMini(name,range,interval)
+//    fun getGraphData(name:String, range:String, interval:String){
+//        CoroutineScope(Dispatchers.Default).launch{
+//            var list = listOf<box>(client.getDatainRangeMini(name,range,interval))
+//             _miniGraphData.emit(list)
+//        }
+//    }
+
+    suspend fun getGraphData(name:String, range:String, interval:String):box{
+       return client.getDatainRangeMini(name,range,interval)
     }
 }

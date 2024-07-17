@@ -1,13 +1,9 @@
 package com.example.stockanalyst.Database
 
-import android.os.storage.StorageVolume
 import androidx.annotation.NonNull
-import androidx.compose.foundation.lazy.layout.IntervalList
 import androidx.room.ColumnInfo
 import androidx.room.Entity
-import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
-import java.util.Date
 
 @Entity(tableName = "Ticket")
 class Ticket {
@@ -37,7 +33,14 @@ class Ticket {
     @ColumnInfo(name = "date")
     var date: Int = 0
 
-    constructor(name:String,open:Double,close:Double,high:Double,low:Double, volume: Int,date:Int){
+    constructor(
+        name:String,
+        open:Double,
+        close:Double,
+        high:Double,
+        low:Double, volume: Int,
+        date: Int
+    ){
         this.name = name
         this.open = open
         this.close = close
@@ -65,12 +68,12 @@ class GraphData{
     var interval:String=""
 
     @ColumnInfo(name = "date")
-    var date: Int = 0
+    var date: Long = 0
 
     @ColumnInfo(name = "price")
     var price:Double = 0.0
 
-    constructor(name: String,range:String,interval:String,date: Int,price: Double)
+    constructor(name: String,range:String,interval:String,date: Long,price: Double)
     {
         this.name = name
         this.price = price
@@ -91,7 +94,7 @@ class LastDate{
     var name:String = ""
 
     @ColumnInfo(name = "LastDayUpdate")
-    var date:Int= 0
+    var date:Long= 0
 
     @ColumnInfo(name="range")
     var range:String = ""
@@ -99,7 +102,7 @@ class LastDate{
     @ColumnInfo(name = "interval")
     var interval:String=""
 
-    constructor(name: String,date: Int, range:String, interval:String)
+    constructor(name: String,date: Long, range:String, interval:String)
     {
         this.name = name
         this.date = date

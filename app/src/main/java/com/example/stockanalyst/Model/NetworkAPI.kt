@@ -10,9 +10,7 @@ import io.ktor.client.request.get
 import io.ktor.client.statement.HttpResponse
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
-import java.sql.Timestamp
 import java.text.SimpleDateFormat
-import java.util.Date
 import java.util.Locale
 
 //"validRanges": [
@@ -41,6 +39,7 @@ class NetworkAPI(TicketDAO:TicketDao) {
                 prettyPrint = true
                 isLenient = true
                 ignoreUnknownKeys = true
+                explicitNulls = false
             })
         }
     }
