@@ -68,7 +68,7 @@ fun Float.toDp() = with(LocalDensity.current) {this@toDp.toDp()}
 
 @Composable
 fun miniGraph(model: ProductModel, nav: NavController, selectedTicket: String) {
-    var listInterval = listOf<String>("1D","1W","2W","1MO","3MO","3Y")
+    var listInterval = listOf<String>("1D","1W","2W","1MO","3MO","6MO","3Y")
     var selected by remember { mutableStateOf(listInterval[0]) }
     var date by remember { mutableStateOf(emptyList<Int>()) }
     var price by remember { mutableStateOf(emptyList<Double>()) }
@@ -82,6 +82,7 @@ fun miniGraph(model: ProductModel, nav: NavController, selectedTicket: String) {
            "2W" -> model.getGraphData(selectedTicket, "10d", "15m")
            "1MO" -> model.getGraphData(selectedTicket, "1mo", "30m")
            "3MO" -> model.getGraphData(selectedTicket, "3mo", "1d")
+           "6MO" -> model.getGraphData(selectedTicket, "6mo", "1d")
            "3Y" -> model.getGraphData(selectedTicket, "3y", "1d")
            else -> {
                model.getGraphData(selectedTicket, "5d", "15m")
@@ -132,12 +133,14 @@ fun miniGraph(model: ProductModel, nav: NavController, selectedTicket: String) {
                 }
             }
         }
+
+
         Box(modifier = Modifier
             .padding(5.dp)
             .offset(x = offsetX.toDp(), y = 150.dp)
             .height(50.dp)
             .width(70.dp)
-            .align(Alignment.TopStart)){
+            ){
             Column(
                 verticalArrangement = Arrangement.Center,
                 horizontalAlignment = Alignment.CenterHorizontally,
@@ -145,7 +148,7 @@ fun miniGraph(model: ProductModel, nav: NavController, selectedTicket: String) {
             ) {
                 if (price.isNotEmpty()) {
                     Text(text = "${roundDouble(price[indexPrice].toDouble())}" , fontSize = 15.sp, color = Color.White, modifier = Modifier.background(colorLight.onSurfaceVariantLight))
-//                Text(text = "${offsetY}")
+
                 }
             }
         }
@@ -195,10 +198,10 @@ fun drawGraph(
 fun drawCoordiantion(drawScope: DrawScope){
     var s = drawScope.size
 
-    for (a  in s.width.toInt()+1000 downTo 0 step 70){
+    for (a  in s.width.toInt() downTo 0 step 70){
         drawScope.drawLine(color = Color.LightGray,start = Offset(a.toFloat(),0f), end = Offset(a.toFloat(),s.height))
     }
-    for (a  in s.height.toInt()+1000 downTo 0 step 70){
+    for (a  in s.height.toInt() downTo 0 step 70){
         drawScope.drawLine(color = Color.LightGray,start = Offset(0f, a.toFloat()), end = Offset(s.width,
             a.toFloat()
         ))

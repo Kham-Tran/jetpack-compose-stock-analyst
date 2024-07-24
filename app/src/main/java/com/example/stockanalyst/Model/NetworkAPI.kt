@@ -39,7 +39,7 @@ class NetworkAPI(TicketDAO:TicketDao) {
                 prettyPrint = true
                 isLenient = true
                 ignoreUnknownKeys = true
-                explicitNulls = false
+//                explicitNulls = true
             })
         }
     }

@@ -35,10 +35,11 @@ class Ticket {
 
     constructor(
         name:String,
-        open:Double,
-        close:Double,
-        high:Double,
-        low:Double, volume: Int,
+        open:Double = -1.0,
+        close:Double = -1.0,
+        high:Double = -1.0,
+        low:Double = -1.0,
+        volume: Int,
         date: Int
     ){
         this.name = name

@@ -32,9 +32,6 @@ fun TicketPage(nav: NavController, dao: TicketDao, selectedTicket: String, model
         topBar = { TopAppBar(
             title = { Text(text = selectedTicket)},
             navigationIcon = {
-                IconButton(onClick = { nav.navigate(Home.route) }) {
-                    Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = "profile")
-                }
             },
             colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.primary)
             ) },
